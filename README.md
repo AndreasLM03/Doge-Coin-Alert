@@ -133,6 +133,29 @@ if CrashAlert[0,-1] != CrashAlert[1,-1]:
     server.sendmail(fromaddr, toaddr, text)
     server.quit()
 ````
+# Automated query
+
+This script is running on my Raspberry and is executed hourly via crontab
+Copy the Python script to your Raspberry, e.g. /home/pi/**/DogeCoinAlert.py
+
+## Run the script automatically every hour
+
+Go on your terminal and enter crontab -e and enter this command
+
+```python
+1 * * * * /usr/bin/python3 /home/pi/****/DogeCoinAlert.py
+```   
+This script will be executed every hour and one minute
+
+---
+## Upload your CSV file into your clouad on your raspberry pi
+Important: You need to install dropbox on your raspberry pi (cf. https://pimylifeup.com/raspberry-pi-dropbox/)
+
+```python
+3 * * * *  /home/pi/Dropbox-Uploader/dropbox_uploader.sh upload /home/pi/*****/DOGE_CrashAlert.csv
+```   
+This script will be executed every hour and 3 minutes. The time delay is due to the fact that in case the Python script takes longer to retrieve and save the data, the latest data will still be uploaded to the cloud.
+
 
 # Summary
 
